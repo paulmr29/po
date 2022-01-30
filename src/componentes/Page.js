@@ -8,9 +8,9 @@ export default function Page() {
   return (
     <section>
       <Routes>
-				<Route path="/" exact component={Inicio} />
-				<Route path="/productos" exact component={ProductosList} />
-        <Route path="/producto/:id" exact component={ProductosDetalles} />
+				<Route path="/" element={<Inicio/>} />
+				<Route path="/productos" element={<ProductosList/>} />
+        <Route path="/producto/:id" element={<ProductosDetalles/>} />
 			</Routes>
     </section>
   );
