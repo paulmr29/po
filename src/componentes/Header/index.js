@@ -3,7 +3,6 @@ import { DataContext } from "../../context/DataProvider";
 import { Link } from "react-router-dom";
 import Nike from "../../images/Nike.jpg";
 
-
 export const Header = () => {
   const value = useContext(DataContext);
   const [carrito] = value.carrito;
