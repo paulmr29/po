@@ -1,12 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Card from "../../images/img02.jpg";
 import { DataContext } from "../../context/DataProvider";
+import { db } from '../../firebase';
+import { addDoc, collection } from 'firebase/firestore';
+
 
 export const Carrito = () => {
   const value = useContext(DataContext);
   const [menu, setMenu] = value.menu;
   const [carrito, setCarrito] = value.carrito;
   const [total] = value.total;
+  const [orderId, setOrderId] = useState("");
+  const [ success, setSuccess ] = useState(false);
+ 
 
   const tooglefalse = () => {
     setMenu(false);
@@ -44,8 +50,6 @@ export const Carrito = () => {
   const show1 = menu ? "carritos show" : "carrito";
 	const show2 = menu ? "carrito show" : "carrito";
 	
-
-
   return (
     <div className={show1}>
       <div className={show2}>
@@ -55,8 +59,6 @@ export const Carrito = () => {
         <h2>Su Carrito</h2>
         <div className="carrito__center">
 					{
-					
-					
 					carrito.length === 0 ? <h2 style={{textAlign: "center", fontSize: "3rem"}}>Carrito Vacio</h2> :<>
 					{
 					carrito.map((producto) => (
@@ -91,11 +93,17 @@ export const Carrito = () => {
 					</>
 					}
         </div>
+		
+		
 
         <div className="carrito__footer">
           <h3>Total: ${total}</h3>
-          <button className="btn">Payment</button>
+          <button className="btn" >Payment</button>
         </div>
+		<div>
+		<h1>Tu compra se ha realizado con exito</h1>
+        <p>Puedes hacer seguimiento con el siguiente id {orderId}</p>
+		</div>
       </div>
     </div>
   );
